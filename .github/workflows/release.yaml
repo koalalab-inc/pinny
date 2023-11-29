@@ -5,7 +5,7 @@ on:
   push:
     # run only against tags
     tags:
-      - "*"
+      - "v*"
 
 permissions: read-all
 
@@ -13,7 +13,7 @@ jobs:
   goreleaser:
     permissions:
       contents: write
-      # packages: write
+      packages: write
       # issues: write
     runs-on: ubuntu-latest
     steps:
@@ -34,6 +34,3 @@ jobs:
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Your GoReleaser Pro key, if you are using the 'goreleaser-pro'
-          # distribution:
-          # GORELEASER_KEY: ${{ secrets.GORELEASER_KEY }}
