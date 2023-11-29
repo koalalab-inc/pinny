@@ -18,7 +18,7 @@ var rootCmd = NewRootCmd()
 
 func NewRootCmd() *cobra.Command {
 	if !currentVersionSet {
-		currentVersion = "v0.0.1"
+		currentVersion = "0.0.1"
 	}
 	return &cobra.Command{
 		Use:     "pinny",
