@@ -25,53 +25,53 @@ builds:
 
 dockers:
 - image_templates:
-  - "koalalab-inc/pinny:{{ .Version }}-amd64"
-  - "koalalab-inc/pinny:amd64"
+  - "ghcr.io/koalalab-inc/pinny:{{ .Version }}-amd64"
+  - "ghcr.io/koalalab-inc/pinny:amd64"
   use: buildx
   dockerfile: Dockerfile
   build_flag_templates:
   - "--platform=linux/amd64"
 - image_templates:
-  - "koalalab-in/pinny:{{ .Version }}-arm64"
-  - "koalalab-in/pinny:arm64"
+  - "ghcr.io/koalalab-inc/pinny:{{ .Version }}-arm64"
+  - "ghcr.io/koalalab-inc/pinny:arm64"
   use: buildx
   goarch: arm64
   dockerfile: Dockerfile
   build_flag_templates:
   - "--platform=linux/arm64/v8"
 - image_templates:
-  - "koalalab-in/pinny:{{ .Version }}-armv7"
-  - "koalalab-in/pinny:armv7"
+  - "ghcr.io/koalalab-inc/pinny:{{ .Version }}-armv7"
+  - "ghcr.io/koalalab-inc/pinny:armv7"
   use: buildx
   goarch: arm64
   dockerfile: Dockerfile
   build_flag_templates:
   - "--platform=linux/arm/v7"
 - image_templates:
-  - "koalalab-in/pinny:{{ .Version }}-s390x"
-  - "koalalab-in/pinny:s390x"
+  - "ghcr.io/koalalab-inc/pinny:{{ .Version }}-s390x"
+  - "ghcr.io/koalalab-inc/pinny:s390x"
   use: buildx
   goarch: arm64
   dockerfile: Dockerfile
   build_flag_templates:
   - "--platform=linux/s390x"
 - image_templates:
-  - "koalalab-in/pinny:{{ .Version }}-ppc64le"
-  - "koalalab-in/pinny:ppc64le"
+  - "ghcr.io/koalalab-inc/pinny:{{ .Version }}-ppc64le"
+  - "ghcr.io/koalalab-inc/pinny:ppc64le"
   use: buildx
   goarch: arm64
   dockerfile: Dockerfile
   build_flag_templates:
   - "--platform=linux/ppc64le"
 docker_manifests:
-- name_template: "koalalab-in/pinny:{{ .Version }}"
+- name_template: "ghcr.io/koalalab-inc/pinny:{{ .Version }}"
   image_templates:
-  - "koalalab-inc/pinny:{{ .Version }}-amd64"
-  - "koalalab-inc/pinny:amd64"
-  - "koalalab-in/pinny:{{ .Version }}-arm64"
-  - "koalalab-in/pinny:arm64"
-  - "koalalab-in/pinny:{{ .Version }}-armv7"
-  - "koalalab-in/pinny:armv7"
+  - "ghcr.io/koalalab-inc/pinny:{{ .Version }}-amd64"
+  - "ghcr.io/koalalab-inc/pinny:amd64"
+  - "ghcr.io/koalalab-inc/pinny:{{ .Version }}-arm64"
+  - "ghcr.io/koalalab-inc/pinny:arm64"
+  - "ghcr.io/koalalab-inc/pinny:{{ .Version }}-armv7"
+  - "ghcr.io/koalalab-inc/pinny:armv7"
 
 
 
