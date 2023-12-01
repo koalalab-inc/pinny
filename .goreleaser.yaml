@@ -15,10 +15,20 @@ before:
     # you may remove this if you don't need go generate
     - go generate ./...
 
+signs:
+- cmd: cosign
+  args:
+  - "sign-blob"
+  - "--output-certificate=${artifact}.pem"
+  - "--output-signature=${signature}"
+  - "${artifact}"
+  - "--yes" # needed on cosign 2.0.0+
+  artifacts: all
+
 builds:
   - env:
       - CGO_ENABLED=0
-      - PINNY_VERSION={{ .Version }}
+    ldflags: "-X github.com/koalalab-inc/pinny/cmd.version={{.Version}}"
     goos:
       - linux
       - darwin

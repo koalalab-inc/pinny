@@ -4,26 +4,21 @@ Copyright © 2023 Koalalab Inc <dev@koalalab.com>
 package cmd
 
 import (
-	"os"
-
 	"github.com/koalalab-inc/pinny/cmd/actions"
 	"github.com/koalalab-inc/pinny/cmd/docker"
 
 	"github.com/spf13/cobra"
 )
 
-var currentVersion, currentVersionSet = os.LookupEnv("PINNY_VERSION")
+var version string
 
 var rootCmd = NewRootCmd()
 
 func NewRootCmd() *cobra.Command {
-	if !currentVersionSet {
-		currentVersion = "0.0.1"
-	}
 	return &cobra.Command{
 		Use:     "pinny",
 		Short:   "\nHash-pining for your OSS dependencies",
-		Version: currentVersion,
+		Version: version,
 	}
 }
 

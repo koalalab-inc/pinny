@@ -153,8 +153,3 @@ COPY --from=builder /app/myapp .
 EXPOSE 8080
 CMD ["./myapp"]
 ```
-
-
-
-
-
