@@ -353,9 +353,21 @@ func GeneratePinnyLockFile(filename string) error {
 func getImageRefFromImageString(imageString string) (*DockerImageRef, error) {
 	imageWithHost := "((?P<host>[^/]+)/(?P<owner>[^/]+)/(?P<image>[^:]+))"
 	imageWithoutHost := "(((?P<owner>[^/]+)/)?(?P<image>[^:@]+))"
-	dockerRegexString := fmt.Sprintf("^(docker://)?(%s|%s)(:(?P<tag>.+))?(@(?P<digest>sha.+))?$", imageWithHost, imageWithoutHost)
-	dockerRegex := regexp.MustCompile(dockerRegexString)
-	if ok, matches := utils.MatchNamedRegex(dockerRegex, imageString); ok {
+	dockerWithHostRegexString := fmt.Sprintf("^(docker://)?%s(:(?P<tag>.+))?(@(?P<digest>sha.+))?$", imageWithHost)
+	dockerWithHostRegex := regexp.MustCompile(dockerWithHostRegexString)
+	dockerWithoutHostRegexString := fmt.Sprintf("^(docker://)?%s(:(?P<tag>.+))?(@(?P<digest>sha.+))?$", imageWithoutHost)
+	dockerWithoutHostRegex := regexp.MustCompile(dockerWithoutHostRegexString)
+	if ok, matches := utils.MatchNamedRegex(dockerWithHostRegex, imageString); ok {
+		imageRef := &DockerImageRef{
+			Raw:    imageString,
+			Host:   matches["host"],
+			Repo:   matches["owner"],
+			Name:   matches["image"],
+			Tag:    matches["tag"],
+			Digest: matches["digest"],
+		}
+		return imageRef, nil
+	} else if ok, matches := utils.MatchNamedRegex(dockerWithoutHostRegex, imageString); ok {
 		imageRef := &DockerImageRef{
 			Raw:    imageString,
 			Host:   matches["host"],
