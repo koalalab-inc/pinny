@@ -19,8 +19,7 @@ signs:
 - cmd: cosign
   args:
   - "sign-blob"
-  - "--output-certificate=${artifact}.pem"
-  - "--output-signature=${signature}"
+  - "--bundle=${signature}"
   - "${artifact}"
   - "--yes" # needed on cosign 2.0.0+
   artifacts: all
