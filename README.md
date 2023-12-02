@@ -6,6 +6,7 @@ Hash-pining for your OSS dependencies
 Pinny currently supports pinning Dockerfiles and Github Actions workflows.
 
 <hr />
+
 * Contents
     * [Example](#example)
         * [Pinning Github Actions workflows](#pinning-github-actions-workflows)
