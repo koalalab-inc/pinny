@@ -7,16 +7,16 @@ Pinny currently supports pinning Dockerfiles and Github Actions workflows.
 
 <hr />
 
-* Contents
-    * [Example](#example)
-        * [Pinning Github Actions workflows](#pinning-github-actions-workflows)
-        * [Pinning Dockerfiles](#pinning-dockerfiles)
-    * [Usage](#usage)
-        * [Github Actions](#github-actions)
-        * [Dockerfiles](#dockerfiles)
-    * [Installation](#installation)
-        * [Docker image](#docker-image)
-        * [Precompiled binary](#precompiled-binary)
+#Contents
+* [Example](#example)
+    * [Pinning Github Actions workflows](#pinning-github-actions-workflows)
+    * [Pinning Dockerfiles](#pinning-dockerfiles)
+* [Usage](#usage)
+    * [Github Actions](#github-actions)
+    * [Dockerfiles](#dockerfiles)
+* [Installation](#installation)
+    * [Docker image](#docker-image)
+    * [Precompiled binary](#precompiled-binary)
 
 ## Example:
 * #### Pinning Github Actions workflows

@@ -32,6 +32,14 @@ builds:
       - linux
       - darwin
 
+docker_signs:
+- cmd: cosign
+  args:
+  - "sign"
+  - ${artifact}
+  - "--yes" # needed on cosign 2.0.0+
+  artifacts: all
+
 dockers:
 - image_templates:
   - "ghcr.io/koalalab-inc/pinny:{{ .Version }}-amd64"
