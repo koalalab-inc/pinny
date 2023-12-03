@@ -1,4 +1,4 @@
-![Pinny](assets/imgs/pinny-header-light.png#gh-light-mode-only)
+![Pinny](assets/imgs/pinny-header-light-1.png#gh-light-mode-only)
 ![Pinny](assets/imgs/pinny-header-dark.png#gh-dark-mode-only)
 # Pinny
 
@@ -8,7 +8,7 @@ Pinny currently supports pinning Dockerfiles and Github Actions workflows.
 
 <hr />
 
-# piContents
+# Contents
 * [Example](#example)
     * [Pinning Github Actions workflows](#pinning-github-actions-workflows)
     * [Pinning Dockerfiles](#pinning-dockerfiles)
