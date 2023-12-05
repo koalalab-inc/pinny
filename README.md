@@ -2,7 +2,7 @@
 ![Pinny](assets/imgs/pinny-header-dark.png#gh-dark-mode-only)
 # Pinny
 
-Hash-pining for your OSS dependencies
+Hash-pinning for your OSS dependencies
 
 Pinny currently supports pinning Dockerfiles and Github Actions workflows.
 
