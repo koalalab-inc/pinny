@@ -119,12 +119,12 @@ Images referenced by hash are immutable. Even if there is a new image pushed wit
     Get the version from the releases section and run the following command(Replace version, os and arch as per your system)<br />
     Following command will download the archive containing binary for MacOS x86_64
     ```bash
-    curl -fsSL https://github.com/koalalab-inc/pinny/releases/download/v0.0.6/pinny_Darwin_x86_64.tar.gz 
+    curl -fsSL https://github.com/koalalab-inc/pinny/releases/download/v0.0.8/pinny_Darwin_x86_64.tar.gz 
     ```
 
     To download and place the binary in `/usr/local/bin` run the following command
     ```bash
-    curl -fsSL https://github.com/koalalab-inc/pinny/releases/download/v0.0.6/pinny_Darwin_x86_64.tar.gz | tar -xz -C "/usr/local/bin/" "pinny"
+    curl -fsSL https://github.com/koalalab-inc/pinny/releases/download/v0.0.8/pinny_Darwin_x86_64.tar.gz | tar -xz -C "/usr/local/bin/" "pinny"
     ```
 
     On MacOS, if you get an error like `Cannot Verify That This App is Free from Malware` Or `This app is from an unidentified developer`, you can run the following command to allow the binary to run
