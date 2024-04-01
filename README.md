@@ -107,13 +107,13 @@ Images referenced by hash are immutable. Even if there is a new image pushed wit
 
 ## Installation:
 * #### Docker image
-    Get the version from the releases section and run the following command(Replace 0.0.6 with the version you want to use)
+    Get the version from the releases section and run the following command(Replace 0.0.8 with the version you want to use)
     ```bash
-    docker run -v "$(pwd):/app" -w /app -u $(id -u):$(id -g) ghcr.io/koalalab-inc/pinny:0.0.6 docker digest alpine:3.18
+    docker run -v "$(pwd):/app" -w /app -u $(id -u):$(id -g) ghcr.io/koalalab-inc/pinny:0.0.8 docker digest alpine:3.18
     ```
     You can alias this command to `pinny` for ease of use
     ```bash
-    alias pinny='docker run -v "$(pwd):/app" -w /app -u $(id -u):$(id -g) ghcr.io/koalalab-inc/pinny:0.0.6'
+    alias pinny='docker run -v "$(pwd):/app" -w /app -u $(id -u):$(id -g) ghcr.io/koalalab-inc/pinny:0.0.8'
     ```
 * #### Precompiled binary
     Get the version from the releases section and run the following command(Replace version, os and arch as per your system)<br />
