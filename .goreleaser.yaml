@@ -8,8 +8,6 @@
 
 version: 1
 
-prereleases: auto
-
 before:
   hooks:
     # You may remove this if you don't use go modules.
@@ -111,3 +109,6 @@ changelog:
     exclude:
       - "^docs:"
       - "^test:"
+
+release:
+  prerelease: auto
