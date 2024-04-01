@@ -41,9 +41,10 @@ docker_signs:
   artifacts: all
 
 dockers:
-- image_templates:
-  - "ghcr.io/koalalab-inc/pinny:{{ .Version }}-amd64"
-  - "ghcr.io/koalalab-inc/pinny:amd64"
+- image: "ghcr.io/koalalab-inc/pinny"
+  tag_templates:
+  - "{{ .Version }}-amd64"
+  - "amd64"
   use: buildx
   dockerfile: Dockerfile
   build_flag_templates:
@@ -64,31 +65,20 @@ dockers:
   dockerfile: Dockerfile
   build_flag_templates:
   - "--platform=linux/arm/v7"
-- image_templates:
-  - "ghcr.io/koalalab-inc/pinny:{{ .Version }}-s390x"
-  - "ghcr.io/koalalab-inc/pinny:s390x"
-  use: buildx
-  goarch: arm64
-  dockerfile: Dockerfile
-  build_flag_templates:
-  - "--platform=linux/s390x"
-- image_templates:
-  - "ghcr.io/koalalab-inc/pinny:{{ .Version }}-ppc64le"
-  - "ghcr.io/koalalab-inc/pinny:ppc64le"
-  use: buildx
-  goarch: arm64
-  dockerfile: Dockerfile
-  build_flag_templates:
-  - "--platform=linux/ppc64le"
 docker_manifests:
 - name_template: "ghcr.io/koalalab-inc/pinny:{{ .Version }}"
-  image_templates:
-  - "ghcr.io/koalalab-inc/pinny:{{ .Version }}-amd64"
-  - "ghcr.io/koalalab-inc/pinny:amd64"
-  - "ghcr.io/koalalab-inc/pinny:{{ .Version }}-arm64"
-  - "ghcr.io/koalalab-inc/pinny:arm64"
-  - "ghcr.io/koalalab-inc/pinny:{{ .Version }}-armv7"
-  - "ghcr.io/koalalab-inc/pinny:armv7"
+  image: "ghcr.io/koalalab-inc/pinny"
+  tag_templates:
+  - "{{ .Version }}-amd64"
+  - "{{ .Version }}-arm64"
+  - "{{ .Version }}-armv7"
+- name_template: "ghcr.io/koalalab-inc/pinny:latest"
+  image: "ghcr.io/koalalab-inc/pinny"
+  tag_templates:
+  - "{{ .Version }}-amd64"
+  - "{{ .Version }}-arm64"
+  - "{{ .Version }}-armv7"
+
 
 
 
