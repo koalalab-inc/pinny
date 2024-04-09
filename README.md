@@ -12,7 +12,7 @@ Pinny currently supports pinning Dockerfiles and Github Actions workflows.
 Dependency confusion and dependency attacks are becoming common. OSS images can be referenced by image tags or hashes/digest. 
 Images referenced by tag are mutable. The maintainer could push a new image with the same TAG and all downstream application using that image and TAG could break.
 
-Images referenced by hash are immutable. Even if there is a new image pushed with the same tag, the new image will have a new hash/diges. The previous image can still be referenced by the previous has.
+Images referenced by hash are immutable. Even if there is a new image pushed with the same tag, the new image will have a new hash/diges. The previous image can still be referenced by the previous hash.
 
 <hr />
 
