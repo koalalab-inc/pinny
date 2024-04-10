@@ -35,7 +35,7 @@ Such dependencies are open to attack vectors like:
    While all these attack vectors are possible in package manager managed OSS dependencies but the risk is more pronounced when directly using from the internet.
 
 These threat vectors can easily be solved by a practice of hash-pinning the image/version of the OSS dependency that the code is using. [Hash-pinning is a recommended security practice](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-third-party-actions) and is [effective against many common types of attacks](https://www.paloaltonetworks.com/blog/prisma-cloud/unpinnable-actions-github-security/).
-Lot of security professionals have also recommended a similar practice, examples [here](https://blog.rafaelgss.dev/why-you-should-pin-actions-by-commit-hash), [here](https://medium.com/ochrona/preventing-dependency-confusion-attacks-in-python-fa6058ac972f) and [here](https://michaelheap.com/ensure-github-actions-pinned-sha/).
+Lot of security professionals have also recommended a similar practice, examples [here](https://blog.rafaelgss.dev/why-you-should-pin-actions-by-commit-hash) and [here](https://michaelheap.com/ensure-github-actions-pinned-sha/).
 
 [**Automated Hash-Pinning**](https://github.com/koalalab-inc/pinny) is a tool that can help in the _**"secure-by-design"**_ journey, specially when using non-package-manager managed OSS dependencies.
 
