@@ -47,6 +47,7 @@ References:
 1. [Anatomy of a software supply chain attack](https://www.technologydecisions.com.au/content/security/article/anatomy-of-a-supply-chain-software-attack-440028396)
 2. [State of software supply chain by Sonatype](https://www.sonatype.com/state-of-the-software-supply-chain/open-source-supply-and-demand)
 3. [OWASP CI/CD Top 10's CI/CD SEC-3: Dependency Chain Abuse](https://owasp.org/www-project-top-10-ci-cd-security-risks/CICD-SEC-03-Dependency-Chain-Abuse)
+4. [Introducing PINNY by KoalaLab](https://www.koalalab.com/post/introducing-pinny-hash-pining-for-your-oss-dependencies)
 ![Screenshot 2024-04-11 at 2 10 36 AM](https://github.com/koalalab-inc/pinny/assets/149300820/afcc5dd8-c214-4a3a-be37-6191276811fd)
 ![Screenshot 2024-04-11 at 2 10 26 AM](https://github.com/koalalab-inc/pinny/assets/149300820/49fa7169-84fe-473c-ba0e-5425a81b11d3)
 ![Screenshot 2024-04-11 at 2 10 13 AM](https://github.com/koalalab-inc/pinny/assets/149300820/1e96d166-f58c-4c58-a70d-bef13442f07e)
