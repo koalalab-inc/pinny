@@ -10,7 +10,7 @@ Software supply chain is all the components and processes that go into the creat
 
      Source-code to Production Process Going through the CI/CD or Devops Pipelines.
 
-![Software-Supply-Chain-Snyk](https://github.com/koalalab-inc/pinny/assets/149300820/c3c7d9c2-b203-4c6f-a255-1fb963b521bb)
+![1710697776708](https://github.com/koalalab-inc/pinny/assets/149300820/eee668c7-e0b2-4258-b27b-732470999265)
 
 
 Software industry stands on the contributions of open source developers. [Linux foundation estimates that Free and Open Source Software(FOSS) consitutes **70-90%** of all modern software](https://www.linuxfoundation.org/blog/blog/a-summary-of-census-ii-open-source-software-application-libraries-the-world-depends-on) being written right now. 
