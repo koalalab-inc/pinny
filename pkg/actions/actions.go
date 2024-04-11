@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"context"
 	"fmt"
+	"net/http"
 	"os"
 	"regexp"
 	"strings"
@@ -85,6 +86,7 @@ func getActionDigest(owner string, repo string, ref string) (*string, []*github.
 	tagRef := fmt.Sprintf("tags/%s", ref)
 	branchRef := fmt.Sprintf("heads/%s", ref)
 	var digest string
+
 	opts := &github.ReferenceListOptions{
 		Ref: "",
 	}
@@ -97,6 +99,7 @@ func getActionDigest(owner string, repo string, ref string) (*string, []*github.
 	var exactRef *github.Reference
 	var exactRefType string
 	for _, ref := range refs {
+		// Check for exact tag match
 		if ref.GetRef() == fmt.Sprintf("refs/%s", tagRef) {
 			exactRef = ref
 			exactRefType = "tag"
@@ -112,26 +115,43 @@ func getActionDigest(owner string, repo string, ref string) (*string, []*github.
 		fmt.Printf("WARN:: Branch references are being used for third party Github Action: %s/%s@%s\n", owner, repo, ref)
 	}
 
+	// Check for shortened hash
 	if exactRef == nil {
-		opts = &github.ReferenceListOptions{
-			Ref: "",
-		}
-		refs, _, err := client.Git.ListMatchingRefs(ctx, owner, repo, opts)
-		if err != nil {
-			return nil, nil, err
-		}
 		for _, r := range refs {
 			sha := *r.GetObject().SHA
 			refType := r.GetObject().GetType()
-			if refType == "commit" && strings.Contains(sha, ref) {
+			if refType == "commit" && strings.HasPrefix(sha, ref) {
+				if sha != ref {
+					fmt.Printf("WARN:: Shortened hash found for ref %s/%s@%s.s\nIt is recommended to use full 40 character hash.", owner, repo, ref)
+				}
 				exactRef = r
 				break
 			}
 		}
 	}
 
+	//check for impostor commits
 	if exactRef == nil {
 		fmt.Printf("WARN:: No exact match found for ref %s/%s@%s\n", owner, repo, ref)
+		impostor := true
+		if exactRefType != "tag" && exactRefType != "branch" {
+			for _, r := range refs {
+				rRef := r.GetRef()
+				if strings.HasPrefix(rRef, "refs/tags/") || strings.HasPrefix(rRef, "refs/heads/") {
+					contained, err := refContains(ctx, client, owner, repo, rRef, ref)
+					if err != nil {
+						return nil, nil, err
+					}
+					if contained {
+						impostor = false
+						break
+					}
+				}
+			}
+			if impostor {
+				fmt.Printf("WARN:: Impostor found for ref %s/%s@%s\n", owner, repo, ref)
+			}
+		}
 		return &ref, []*github.Reference{}, nil
 	}
 	refObjectType := exactRef.GetObject().GetType()
@@ -147,9 +167,9 @@ func getActionDigest(owner string, repo string, ref string) (*string, []*github.
 
 	otherMatchingRefs := []*github.Reference{}
 	if exactRef != nil {
-		for _, ref := range refs {
-			if *ref.GetObject().SHA == *exactRef.GetObject().SHA && ref.GetRef() != exactRef.GetRef() {
-				otherMatchingRefs = append(otherMatchingRefs, ref)
+		for _, r := range refs {
+			if *r.GetObject().SHA == *exactRef.GetObject().SHA && r.GetRef() != exactRef.GetRef() {
+				otherMatchingRefs = append(otherMatchingRefs, r)
 			}
 		}
 	}
@@ -177,10 +197,6 @@ func GetDigest(actionString string) (*string, error) {
 }
 
 func GetGithubActionRefWithDigest(actionString string) (*GithubActionRef, error) {
-	if githubActionRef, ok := actionRefCache[actionString]; ok {
-		return githubActionRef, nil
-	}
-
 	githubActionRef, err := parseActionString(actionString)
 	if err != nil {
 		return nil, err
@@ -188,6 +204,11 @@ func GetGithubActionRefWithDigest(actionString string) (*GithubActionRef, error)
 	owner := githubActionRef.Owner
 	repo := githubActionRef.Repo
 	ref := githubActionRef.Ref
+
+	cacheKey := fmt.Sprintf("%s/%s@%s", owner, repo, ref)
+	if githubActionRef, ok := actionRefCache[cacheKey]; ok {
+		return githubActionRef, nil
+	}
 
 	digest, matchingRefs, err := getActionDigest(owner, repo, ref)
 	otherRefNamesArr := []string{}
@@ -206,7 +227,7 @@ func GetGithubActionRefWithDigest(actionString string) (*GithubActionRef, error)
 	githubActionRef.Digest = *digest
 	githubActionRef.OtherRefNames = otherRefNamesArr
 
-	actionRefCache[actionString] = githubActionRef
+	actionRefCache[cacheKey] = githubActionRef
 	return githubActionRef, nil
 }
 
@@ -272,4 +293,18 @@ func PinWorkflow(workflowName string) error {
 		}
 	}
 	return nil
+}
+
+func refContains(ctx context.Context, c *github.Client, owner, repo, base, target string) (bool, error) {
+	diff, resp, err := c.Repositories.CompareCommits(ctx, owner, repo, base, target, &github.ListOptions{PerPage: 1})
+	if err != nil {
+		if resp.StatusCode == http.StatusNotFound {
+			// NotFound can be returned for some divergent cases: "404 No common ancestor between ..."
+			return false, nil
+		}
+		return false, fmt.Errorf("error comparing revisions: %w", err)
+	}
+
+	// Target should be behind or at the base ref if it is considered contained.
+	return diff.GetStatus() == "behind" || diff.GetStatus() == "identical", nil
 }
