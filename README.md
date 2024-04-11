@@ -2,7 +2,7 @@
 ![Pinny](assets/imgs/pinny-header-dark.png#gh-dark-mode-only)
 # Pinny
 
-Hash-pinning for your OSS dependencies. In addition, Pinny also check for impostor commits.
+Hash-pinning for your OSS dependencies to protect against [repojacking](https://github.com/koalalab-inc/pinny/blob/main/docs/Secure-by-design-OSS.md) and [imposter commits](https://github.com/koalalab-inc/pinny/blob/main/docs/impostorcommits.md).
 
 Pinny currently supports pinning Dockerfiles and Github Actions workflows.
 
