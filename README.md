@@ -2,10 +2,9 @@
 ![Pinny](assets/imgs/pinny-header-dark.png#gh-dark-mode-only)
 # Pinny
 
-Hash-pinning for your OSS dependencies
+Hash-pinning for your OSS dependencies. In addition, Pinny also check for impostor commits.
 
 Pinny currently supports pinning Dockerfiles and Github Actions workflows.
-
 
 # Why
 
@@ -112,24 +111,24 @@ Images referenced by hash are immutable. Even if there is a new image pushed wit
 
 ## Installation:
 * #### Docker image
-    Get the version from the releases section and run the following command(Replace 0.0.8 with the version you want to use)
+    Get the version from the releases section and run the following command(Replace 0.0.9 with the version you want to use)
     ```bash
-    docker run -v "$(pwd):/app" -w /app -u $(id -u):$(id -g) ghcr.io/koalalab-inc/pinny:0.0.8 docker digest alpine:3.18
+    docker run -v "$(pwd):/app" -w /app -u $(id -u):$(id -g) ghcr.io/koalalab-inc/pinny:0.0.9 docker digest alpine:3.18
     ```
     You can alias this command to `pinny` for ease of use
     ```bash
-    alias pinny='docker run -v "$(pwd):/app" -w /app -u $(id -u):$(id -g) ghcr.io/koalalab-inc/pinny:0.0.8'
+    alias pinny='docker run -v "$(pwd):/app" -w /app -u $(id -u):$(id -g) ghcr.io/koalalab-inc/pinny:0.0.9'
     ```
 * #### Precompiled binary
     Get the version from the releases section and run the following command(Replace version, os and arch as per your system)<br />
     Following command will download the archive containing binary for MacOS x86_64
     ```bash
-    curl -fsSL https://github.com/koalalab-inc/pinny/releases/download/v0.0.8/pinny_Darwin_x86_64.tar.gz 
+    curl -fsSL https://github.com/koalalab-inc/pinny/releases/download/v0.0.9/pinny_Darwin_x86_64.tar.gz 
     ```
 
     To download and place the binary in `/usr/local/bin` run the following command
     ```bash
-    curl -fsSL https://github.com/koalalab-inc/pinny/releases/download/v0.0.8/pinny_Darwin_x86_64.tar.gz | tar -xz -C "/usr/local/bin/" "pinny"
+    curl -fsSL https://github.com/koalalab-inc/pinny/releases/download/v0.0.9/pinny_Darwin_x86_64.tar.gz | tar -xz -C "/usr/local/bin/" "pinny"
     ```
 
     On MacOS, if you get an error like `Cannot Verify That This App is Free from Malware` Or `This app is from an unidentified developer`, you can run the following command to allow the binary to run
