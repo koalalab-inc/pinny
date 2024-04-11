@@ -1,6 +1,6 @@
 With Software supply chain attacks on the rise, attackers are finding new ways to attack. While securing OSS depdencies is importand and imperative, some attack vectors open up because of configuration issues in GitOps workflows, in this case GitHub's workflows.
 
-**Impostor commits, a type of Dependency Confusion**
+**Imposter commits, a type of Dependency Confusion**
 
 GitHub has a lot of features that make GitOps really easy, one among them is the ability to [checkout pull requests from forks directly from the parent repo](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/checking-out-pull-requests-locally). 
 
