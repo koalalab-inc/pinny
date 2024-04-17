@@ -20,7 +20,7 @@ But there aren't similar protections when using GitHub from a CLI or through the
 
 This is specifically problematic when using GitHub Actions in CI/CD.
 
-**Impostor commits in CI/CD**
+**Imposter commits in CI/CD**
 
 GitHub fails to distinguish between fork and non-fork SHA references, forks can bypass security settings on GitHub Actions that would otherwise restrict actions to only “trusted” sources (such as GitHub themselves or the repository’s own organization).
 GitHub has added the practice of checking for forked vs parent branch when using Actions with SHA commits in their [best practices blog.](https://docs.github.com/en/actions/learn-github-actions/finding-and-customizing-actions#using-shas)
