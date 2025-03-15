@@ -28,4 +28,4 @@ GitHub has added the practice of checking for forked vs parent branch when using
 
 Refrences:
 1. [Chainguard's Impostor Commit Blog](https://www.chainguard.dev/unchained/what-the-fork-imposter-commits-in-github-actions-and-ci-cd)
-2. [GitHub Actions could be so uch better](https://blog.yossarian.net/2023/09/22/GitHub-Actions-could-be-so-much-better)
+2. [GitHub Actions could be so much better](https://blog.yossarian.net/2023/09/22/GitHub-Actions-could-be-so-much-better)
