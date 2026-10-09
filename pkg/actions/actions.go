@@ -205,7 +205,7 @@ func GetGithubActionRefWithDigest(actionString string) (*GithubActionRef, error)
 	repo := githubActionRef.Repo
 	ref := githubActionRef.Ref
 
-	cacheKey := fmt.Sprintf("%s/%s@%s", owner, repo, ref)
+	cacheKey := fmt.Sprintf("%s/%s/%s@%s", owner, repo, githubActionRef.Path, ref)
 	if githubActionRef, ok := actionRefCache[cacheKey]; ok {
 		return githubActionRef, nil
 	}
